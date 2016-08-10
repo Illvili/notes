@@ -11,7 +11,7 @@
 * 使用__反向代理__来代理所有__服务器__/__API服务__
 
 ### 栗子
-```
+```nginx
 location ~ ^/(static|page|licai-pc|licai-h|yyh5|crm-pc|test|yysc-h5|o2o-crm|licai-app|play) {
     proxy_pass http://127.0.0.1:8080;
 }
@@ -23,7 +23,7 @@ location ~ ^/(static|page|licai-pc|licai-h|yyh5|crm-pc|test|yysc-h5|o2o-crm|lica
 > `http://127.0.0.1/yyh5/page/index.html` -> `http://127.0.0.1:8080/yyh5/page/index.html`
 
 
-```
+```nginx
 # yysc-h5 backend API
 location ~ ^/installment {
     proxy_pass http://192.168.50.160:8080;
@@ -34,7 +34,7 @@ location ~ ^/installment {
 > `http://127.0.0.1/installment/fws/commodity/sku/detail/o/2390131,2435528` -> `http://192.168.50.160:8080/installment/fws/commodity/sku/detail/o/2390131,2435528`
 
 
-```
+```nginx
 # yysc-crm backend API
 rewrite ^/mock/(.*)$ /test/$1.json break;
 ```
@@ -43,7 +43,7 @@ rewrite ^/mock/(.*)$ /test/$1.json break;
 > `http://127.0.0.1/mock/sys/getMenu` -> `http://127.0.0.1/test/getMenu.json`
 
 
-```
+```nginx
 #o2ocrm
 location ~ ^/remote {
     rewrite ^/remote(.*) $1 break;
@@ -60,7 +60,7 @@ location ~ ^/remote {
 > `http://127.0.0.1/remote/sys/getMenu` -> `http://o2ocrm/remote/sys/getMenu`
 
 
-```
+```nginx
 # o2o-crm upstream
 upstream o2ocrm {
     server 192.168.49.35:8080;
@@ -74,28 +74,28 @@ upstream o2ocrm {
 ### 常用命令
 
 #### 安装
-```
+```bash
 brew install nginx
 ```
 > 使用 [brew](http://brew.sh/) 来安装`nginx`
 
 #### 配置目录
-```
+```bash
 /usr/local/etc/nginx/nginx.conf
 ```
 
 #### 启动
-```
+```bash
 sudo nginx
 ```
 > 因为要开启在80端口所以加上了sudo
 
 #### 检查配置文件
-```
+```bash
 nginx -t
 ```
 
 #### 重载配置文件
-```
+```bash
 nginx -s reload
 ```
