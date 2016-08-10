@@ -79,7 +79,7 @@ brew install nginx
 ```
 > 使用 [brew](http://brew.sh/) 来安装`nginx`
 
-### 配置目录
+#### 配置目录
 ```
 /usr/local/etc/nginx/nginx.conf
 ```
@@ -90,12 +90,12 @@ sudo nginx
 ```
 > 因为要开启在80端口所以加上了sudo
 
-### 检查配置文件
+#### 检查配置文件
 ```
 nginx -t
 ```
 
-### 重载配置文件
+#### 重载配置文件
 ```
 nginx -s reload
 ```
